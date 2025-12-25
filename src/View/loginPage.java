@@ -3,9 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
-
+import Model.User;
+import java.awt.CardLayout;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import Model.Craft;
+import Model.CraftQueue;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,9 +25,16 @@ public class loginPage extends javax.swing.JFrame {
      */
     public loginPage() {
         initComponents();
-        getContentPane().add(login_panel, "login");
-        getContentPane().add(Dashboard_Panel, "dashboard");
-        
+        CardLayout card = new CardLayout();
+    getContentPane().setLayout(card);
+
+    getContentPane().add(login_panel, "login");
+    getContentPane().add(Dashboard_Panel, "dashboard");
+    getContentPane().add(signUp_Panel, "signup");
+    // show login first
+    card.show(getContentPane(), "login");
+
+               
 
     }
 
@@ -57,23 +69,34 @@ public class loginPage extends javax.swing.JFrame {
         profile_icon = new javax.swing.JLabel();
         news_icon = new javax.swing.JLabel();
         Main_Content = new javax.swing.JPanel();
+        Add = new javax.swing.JButton();
+        Refresh = new javax.swing.JButton();
         main_motto1 = new javax.swing.JLabel();
         main_motto2 = new javax.swing.JLabel();
         earth = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Dashboard_table = new javax.swing.JTable();
         aircraft_Panel = new javax.swing.JPanel();
+        top_Panel = new javax.swing.JPanel();
+        reload = new javax.swing.JButton();
+        searcher = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         Spacecraft_Panel = new javax.swing.JPanel();
         Profile_Panel = new javax.swing.JPanel();
         logout_button1 = new javax.swing.JButton();
         logout_button = new javax.swing.JButton();
         contact_txtfield = new javax.swing.JTextField();
         Contact = new javax.swing.JLabel();
-        designation_combo = new javax.swing.JComboBox<>();
         Designation = new javax.swing.JLabel();
-        password_field = new javax.swing.JPasswordField();
+        psfield_profile = new javax.swing.JTextField();
+        designation = new javax.swing.JTextField();
         Password = new javax.swing.JLabel();
         name_txtfield = new javax.swing.JTextField();
         Profile_name = new javax.swing.JLabel();
         Profile_Panel_Photo = new javax.swing.JLabel();
+        psfield_profile1 = new javax.swing.JTextField();
         News_Panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -85,6 +108,20 @@ public class loginPage extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         news_photo = new javax.swing.JLabel();
+        signUp_Panel = new javax.swing.JPanel();
+        Signup_label = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        signup_panel_photo = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -97,6 +134,12 @@ public class loginPage extends javax.swing.JFrame {
         Sign_up.setFont(new java.awt.Font("STXihei", 3, 20)); // NOI18N
         Sign_up.setForeground(new java.awt.Color(255, 255, 255));
         Sign_up.setText("Sign Up");
+        Sign_up.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Sign_up.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Sign_upMouseClicked(evt);
+            }
+        });
         login_panel.add(Sign_up, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 770, 80, -1));
 
         new_user.setFont(new java.awt.Font("STXihei", 0, 20)); // NOI18N
@@ -105,6 +148,7 @@ public class loginPage extends javax.swing.JFrame {
         new_user.setText("New User ? ");
         login_panel.add(new_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 770, -1, -1));
 
+        Usernamefield_login.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         Usernamefield_login.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Usernamefield_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,10 +157,17 @@ public class loginPage extends javax.swing.JFrame {
         });
         login_panel.add(Usernamefield_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 270, 50));
 
+        PsField_login.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         PsField_login.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        PsField_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PsField_loginActionPerformed(evt);
+            }
+        });
         login_panel.add(PsField_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 570, 260, 50));
 
         login_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/login_button 89.png"))); // NOI18N
+        login_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         login_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 login_buttonMouseClicked(evt);
@@ -171,6 +222,7 @@ public class loginPage extends javax.swing.JFrame {
 
         spacecraft_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         spacecraft_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/spaceicon3.png"))); // NOI18N
+        spacecraft_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         spacecraft_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 spacecraft_iconMouseClicked(evt);
@@ -180,6 +232,7 @@ public class loginPage extends javax.swing.JFrame {
 
         home_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         home_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/home incon.png"))); // NOI18N
+        home_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         home_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 home_iconMouseClicked(evt);
@@ -189,6 +242,7 @@ public class loginPage extends javax.swing.JFrame {
 
         aircraft_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         aircraft_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/aeri.png"))); // NOI18N
+        aircraft_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aircraft_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 aircraft_iconMouseClicked(evt);
@@ -198,6 +252,7 @@ public class loginPage extends javax.swing.JFrame {
 
         profile_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         profile_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/profile.png"))); // NOI18N
+        profile_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profile_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 profile_iconMouseClicked(evt);
@@ -207,6 +262,7 @@ public class loginPage extends javax.swing.JFrame {
 
         news_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         news_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/news.png"))); // NOI18N
+        news_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         news_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 news_iconMouseClicked(evt);
@@ -216,10 +272,42 @@ public class loginPage extends javax.swing.JFrame {
 
         Dashboard_Panel.add(Nav_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        Main_Content.setBackground(new java.awt.Color(153, 204, 255));
+        Main_Content.setBackground(new java.awt.Color(220, 227, 255));
         Main_Content.setMinimumSize(new java.awt.Dimension(1136, 960));
         Main_Content.setPreferredSize(new java.awt.Dimension(1136, 960));
         Main_Content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Add.setBackground(new java.awt.Color(4, 36, 149));
+        Add.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        Add.setForeground(new java.awt.Color(255, 255, 255));
+        Add.setText("Add");
+        Add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddMouseClicked(evt);
+            }
+        });
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+        Main_Content.add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 280, 90, -1));
+
+        Refresh.setBackground(new java.awt.Color(4, 36, 149));
+        Refresh.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        Refresh.setForeground(new java.awt.Color(255, 255, 255));
+        Refresh.setText("Refresh");
+        Refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RefreshMouseClicked(evt);
+            }
+        });
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+        Main_Content.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 140, -1));
 
         main_motto1.setFont(new java.awt.Font("Bodoni MT", 0, 40)); // NOI18N
         main_motto1.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,12 +322,77 @@ public class loginPage extends javax.swing.JFrame {
         earth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/EARTH.png"))); // NOI18N
         Main_Content.add(earth, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        Dashboard_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Craft Type", "Engine Type", "Type", "Purpose", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Dashboard_table.setRowHeight(40);
+        jScrollPane2.setViewportView(Dashboard_table);
+
+        Main_Content.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 1060, 560));
+
         Dashboard_Panel.add(Main_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
-        aircraft_Panel.setBackground(new java.awt.Color(255, 255, 51));
+        aircraft_Panel.setBackground(new java.awt.Color(255, 255, 255));
         aircraft_Panel.setMinimumSize(new java.awt.Dimension(1136, 960));
         aircraft_Panel.setPreferredSize(new java.awt.Dimension(1136, 960));
         aircraft_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        top_Panel.setBackground(new java.awt.Color(102, 102, 255));
+        top_Panel.setMinimumSize(new java.awt.Dimension(1136, 200));
+        top_Panel.setName(""); // NOI18N
+        top_Panel.setPreferredSize(new java.awt.Dimension(1136, 200));
+        top_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        reload.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        reload.setText("Re-Load");
+        reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reloadActionPerformed(evt);
+            }
+        });
+        top_Panel.add(reload, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 150, 130, 40));
+
+        searcher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/EARTH.png"))); // NOI18N
+        searcher.setMaximumSize(new java.awt.Dimension(1136, 200));
+        searcher.setMinimumSize(new java.awt.Dimension(1136, 200));
+        searcher.setRequestFocusEnabled(false);
+        top_Panel.add(searcher, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, 200));
+
+        aircraft_Panel.add(top_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, -1));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(1000, 700));
+        jScrollPane1.setName(""); // NOI18N
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(1000, 700));
+        jScrollPane1.setViewportView(jPanel2);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel2.setMinimumSize(null);
+        jPanel2.setPreferredSize(null);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+        jPanel2.add(filler1);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        aircraft_Panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 760));
+
         Dashboard_Panel.add(aircraft_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
         Spacecraft_Panel.setBackground(new java.awt.Color(255, 204, 204));
@@ -275,16 +428,27 @@ public class loginPage extends javax.swing.JFrame {
         Contact.setText("CONTACT :");
         Profile_Panel.add(Contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 720, -1, -1));
 
-        designation_combo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        designation_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
-        Profile_Panel.add(designation_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 620, 120, 50));
-
         Designation.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 24)); // NOI18N
         Designation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Designation.setText("DESIGNATION :");
         Designation.setToolTipText("");
         Profile_Panel.add(Designation, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 630, -1, -1));
-        Profile_Panel.add(password_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 190, 40));
+
+        psfield_profile.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        psfield_profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psfield_profileActionPerformed(evt);
+            }
+        });
+        Profile_Panel.add(psfield_profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 540, 220, 40));
+
+        designation.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        designation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                designationActionPerformed(evt);
+            }
+        });
+        Profile_Panel.add(designation, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 630, 190, 40));
 
         Password.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 24)); // NOI18N
         Password.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -293,7 +457,7 @@ public class loginPage extends javax.swing.JFrame {
 
         name_txtfield.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         name_txtfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Profile_Panel.add(name_txtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 240, -1));
+        Profile_Panel.add(name_txtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 260, -1));
 
         Profile_name.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 24)); // NOI18N
         Profile_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -301,10 +465,10 @@ public class loginPage extends javax.swing.JFrame {
         Profile_Panel.add(Profile_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, -1, -1));
 
         Profile_Panel_Photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/moon.png"))); // NOI18N
-        Profile_Panel_Photo.setMaximumSize(new java.awt.Dimension(1136, 960));
-        Profile_Panel_Photo.setMinimumSize(new java.awt.Dimension(1136, 960));
-        Profile_Panel_Photo.setPreferredSize(new java.awt.Dimension(1136, 960));
         Profile_Panel.add(Profile_Panel_Photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, 1020));
+
+        psfield_profile1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Profile_Panel.add(psfield_profile1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 540, 210, 40));
 
         Dashboard_Panel.add(Profile_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
@@ -403,6 +567,83 @@ public class loginPage extends javax.swing.JFrame {
 
         getContentPane().add(Dashboard_Panel, "card3");
 
+        signUp_Panel.setMinimumSize(new java.awt.Dimension(1536, 960));
+        signUp_Panel.setName(""); // NOI18N
+        signUp_Panel.setPreferredSize(new java.awt.Dimension(1536, 960));
+        signUp_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Signup_label.setFont(new java.awt.Font("Noto Serif HK", 1, 45)); // NOI18N
+        Signup_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Signup_label.setText("SIGN UP");
+        signUp_Panel.add(Signup_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 160, 210, 60));
+
+        jLabel3.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Password :");
+        signUp_Panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 370, 190, 60));
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        signUp_Panel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 370, 310, 60));
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        signUp_Panel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 460, 280, 60));
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        signUp_Panel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 560, 310, 60));
+
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        signUp_Panel.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 650, 310, 60));
+
+        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        signUp_Panel.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 280, 310, 60));
+
+        jLabel4.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Confirm Password :");
+        signUp_Panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 460, 310, 60));
+
+        jLabel13.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Contact :");
+        signUp_Panel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 550, 160, 60));
+
+        jLabel14.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Address :");
+        signUp_Panel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 640, 160, 60));
+
+        jLabel15.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Username :");
+        signUp_Panel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 280, 190, 60));
+
+        jButton1.setBackground(new java.awt.Color(9, 0, 97));
+        jButton1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 30)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Sign Up");
+        jButton1.setOpaque(true);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        signUp_Panel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 180, 60));
+
+        signup_panel_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/signup page.png"))); // NOI18N
+        signUp_Panel.add(signup_panel_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(signUp_Panel, "card4");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -411,35 +652,108 @@ public class loginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_Usernamefield_loginActionPerformed
 
     private void login_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_buttonMouseClicked
-       String username = Usernamefield_login.getText().trim();
-       if (username.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog( this, "Enter the username to login", "Login Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-        return; // stop login
+       
+    String username = Usernamefield_login.getText().trim();
+
+    if (username.isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Enter the username to login",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
     }
-        char[] password = PsField_login.getPassword();
-        String ps = String.valueOf(password);
-        
-        if(ps.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog( this, "Enter the password to login", "Login Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-        
-        if(!ps.matches("\\d+")){
-            javax.swing.JOptionPane.showMessageDialog( this, "Enter numeric password to login", "Login Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-        password_field.setText(ps);
-        password_field.setEditable(false);
-        
 
-    // Set it in profile panel
-        name_txtfield.setText(username);
-        
+    String ps = String.valueOf(PsField_login.getPassword());
 
-    // Make profile name uneditable
-         name_txtfield.setEditable(false);
-        java.awt.CardLayout card = (java.awt.CardLayout) getContentPane().getLayout();
+    if (ps.isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Enter the password to login",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!ps.matches("\\d+")) {
+        JOptionPane.showMessageDialog(this,
+                "Enter numeric password to login",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    /* ================= ADMIN LOGIN FIRST ================= */
+    if (username.equalsIgnoreCase("admin")) {
+
+        if (!ps.equals("98411")) {
+            JOptionPane.showMessageDialog(this,
+                    "Incorrect password for admin",
+                    "Login Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Admin login success
+        name_txtfield.setText("admin");
+        psfield_profile.setText(ps);
+        designation.setText("Admin");
+        contact_txtfield.setText("9840262982");
+
+        name_txtfield.setEditable(false);
+        psfield_profile.setEditable(false);
+        designation.setEditable(false);
+
+        java.awt.CardLayout card =
+                (java.awt.CardLayout) getContentPane().getLayout();
         card.show(getContentPane(), "dashboard");
+
+        Main_Content.setVisible(true);
+        aircraft_Panel.setVisible(false);
+        Spacecraft_Panel.setVisible(false);
+        Profile_Panel.setVisible(false);
+        News_Panel.setVisible(false);
+        signUp_Panel.setVisible(false);
+
+        return; 
+    }
+
+    /* ================= NORMAL USER LOGIN ================= */
+    User loggedUser = User.login(username, ps);
+
+    if (loggedUser == null) {
+        JOptionPane.showMessageDialog(this,
+                "Username does not exist. Please sign up first",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!loggedUser.getPassword().equals(ps)) {
+        JOptionPane.showMessageDialog(this,
+                "Password does not match",
+                "Login Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    name_txtfield.setText(loggedUser.getUsername());
+    psfield_profile.setText(loggedUser.getPassword());
+    designation.setText(loggedUser.getDesignation());
+    contact_txtfield.setText(loggedUser.getContact());
+
+    name_txtfield.setEditable(false);
+    psfield_profile.setEditable(false);
+    designation.setEditable(false);
+
+    java.awt.CardLayout card =
+            (java.awt.CardLayout) getContentPane().getLayout();
+    card.show(getContentPane(), "dashboard");
+
+    Main_Content.setVisible(true);
+    aircraft_Panel.setVisible(false);
+    Spacecraft_Panel.setVisible(false);
+    Profile_Panel.setVisible(false);
+    News_Panel.setVisible(false);
+    signUp_Panel.setVisible(false);
     }//GEN-LAST:event_login_buttonMouseClicked
 
     private void home_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_home_iconMouseClicked
@@ -518,6 +832,141 @@ public class loginPage extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void psfield_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psfield_profileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_psfield_profileActionPerformed
+
+    private void designationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_designationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_designationActionPerformed
+
+    private void PsField_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PsField_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PsField_loginActionPerformed
+
+    private void Sign_upMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sign_upMouseClicked
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) getContentPane().getLayout();
+    card.show(getContentPane(), "signup");    
+    }//GEN-LAST:event_Sign_upMouseClicked
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String username = jTextField5.getText().trim();
+        String password = jTextField1.getText().trim();
+        String confirm = jTextField2.getText().trim();
+        String contact = jTextField3.getText().trim();
+        String address = jTextField4.getText().trim();
+
+    if (!password.equals(confirm)) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this, "Passwords do not match",
+            "Signup Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
+
+    if (User.findUser(username) != null) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this, "Username already exists",
+            "Signup Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }     
+    
+    if (username.isEmpty() || password.isEmpty() || confirm.isEmpty()|| contact.isEmpty() || address.isEmpty())  {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please enter all the fields", "SignUp Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if(!contact.matches("\\d{10}")){
+        javax.swing.JOptionPane.showMessageDialog(this,"Contact must be of 10 digits", "SignUp Error" , javax.swing.JOptionPane.ERROR_MESSAGE);
+      return; 
+    }
+
+    javax.swing.JOptionPane.showMessageDialog(
+        this, "Signup successful! Please login."
+    );
+    
+    User newUser = new User(username, password, "User", contact, address);
+    User.addUser(newUser);
+
+    CardLayout card = (CardLayout) getContentPane().getLayout();
+    card.show(getContentPane(), "login");
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddMouseClicked
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        // TODO add your handling code here:                                    
+        AddCraftDetails frame = new AddCraftDetails();
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            loginPage.this.setEnabled(true); // Re-enable when closed
+            loginPage.this.toFront(); // Bring dashboard back to front
+        }
+    });
+        frame.setVisible(true);
+
+    }//GEN-LAST:event_AddActionPerformed
+
+    private void RefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RefreshMouseClicked
+
+    private void refreshCraftTable() {
+    DefaultTableModel model = (DefaultTableModel) Dashboard_table.getModel(); // Use jTable1 (your table name)
+    model.setRowCount(0);
+    for (Craft c : CraftQueue.getAllCrafts()) {
+        model.addRow(new Object[]{
+            c.getName(),
+            c.getCraftType(),
+            c.getEngineType(),
+            c.getType(),
+            c.getPurpose(),
+            c.getStatus()
+        });
+    }
+}
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        // TODO add your handling code here:
+        refreshCraftTable();
+        CraftQueue.initializeSampleData();
+
+    }//GEN-LAST:event_RefreshActionPerformed
+
+    private void reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadActionPerformed
+    //jScrollPane1.removeAll();
+    CraftQueue.initializeSampleData();
+    for (int i = jPanel2.getComponentCount() - 1; i >= 0; i--) {
+        if (jPanel2.getComponent(i) instanceof CraftPanel) {
+            jPanel2.remove(i);
+        }
+    }
+
+    // Add updated craft panels
+    for (Craft craft : CraftQueue.getAllCrafts()) {
+        CraftPanel cp = new CraftPanel(craft);
+        jPanel2.add(cp, 0); // add before filler
+    }
+
+    jPanel2.revalidate();
+    jPanel2.repaint();
+
+
+
+    }//GEN-LAST:event_reloadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -543,11 +992,14 @@ public class loginPage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new loginPage().setVisible(true));
         
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
     private javax.swing.JLabel Aeromaze;
     private javax.swing.JLabel Contact;
     private javax.swing.JPanel Dashboard_Panel;
+    private javax.swing.JTable Dashboard_table;
     private javax.swing.JLabel Designation;
     private javax.swing.JLabel LOGO;
     private javax.swing.JPanel Main_Content;
@@ -559,27 +1011,44 @@ public class loginPage extends javax.swing.JFrame {
     private javax.swing.JLabel Profile_Panel_Photo;
     private javax.swing.JLabel Profile_name;
     private javax.swing.JPasswordField PsField_login;
+    private javax.swing.JButton Refresh;
     private javax.swing.JLabel Sign_up;
+    private javax.swing.JLabel Signup_label;
     private javax.swing.JPanel Spacecraft_Panel;
     private javax.swing.JLabel Username_login;
     private javax.swing.JTextField Usernamefield_login;
     private javax.swing.JPanel aircraft_Panel;
     private javax.swing.JLabel aircraft_icon;
     private javax.swing.JTextField contact_txtfield;
-    private javax.swing.JComboBox<String> designation_combo;
+    private javax.swing.JTextField designation;
     private javax.swing.JLabel earth;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel home_icon;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel login_button;
     private javax.swing.JLabel login_icon;
     private javax.swing.JPanel login_panel;
@@ -592,8 +1061,15 @@ public class loginPage extends javax.swing.JFrame {
     private javax.swing.JLabel new_user;
     private javax.swing.JLabel news_icon;
     private javax.swing.JLabel news_photo;
-    private javax.swing.JPasswordField password_field;
     private javax.swing.JLabel profile_icon;
+    private javax.swing.JTextField psfield_profile;
+    private javax.swing.JTextField psfield_profile1;
+    private javax.swing.JButton reload;
+    private javax.swing.JLabel searcher;
+    private javax.swing.JPanel signUp_Panel;
+    private javax.swing.JLabel signup_panel_photo;
     private javax.swing.JLabel spacecraft_icon;
+    private javax.swing.JPanel top_Panel;
     // End of variables declaration//GEN-END:variables
+
 }
