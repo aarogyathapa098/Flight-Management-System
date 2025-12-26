@@ -22,9 +22,10 @@ public class CraftQueue {
         crafts.add(craft);
     }    
     // Method to remove a craft
-    public static Craft removeCraft() {
-        return crafts.poll();
+    public static boolean removeCraft(Craft craft) {
+        return crafts.remove(craft); // removes matching object
     }
+
     
     // Method to get all crafts
     public static Queue<Craft> getAllCrafts() {

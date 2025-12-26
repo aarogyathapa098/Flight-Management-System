@@ -4,6 +4,7 @@
  */
 package View;
 import Model.Craft;
+import Model.CraftQueue;
 
 /**
  *
@@ -32,50 +33,53 @@ public class CraftPanel extends javax.swing.JPanel {
     private void populatePanel() {
 
     // Hide everything first (reset state)
-    jLabel1.setVisible(false);       // Flight No
-    jTextField8.setVisible(false);
+    flight.setVisible(false);  
+    flight_txt.setVisible(false);
+// Flight No
+    tail_txt.setVisible(false);
+    tail_no.setVisible(false);
 
-    jLabel9.setVisible(false);       // Base
-    jTextField10.setVisible(false);
+    base.setVisible(false);       // Base
+    base_txt.setVisible(false);
 
     Serialnum.setVisible(false);     // Serial / Tail
     Serialno.setVisible(false);
 
-    jLabel7.setVisible(true);        // Model No
-    jTextField11.setVisible(true);
+    model_no.setVisible(true);        // Model No
+    model_txt.setVisible(true);
 
     if (craft == null) return;
 
     // Common fields
-    jTextField7.setText(craft.getName());
-    jTextField1.setText(craft.getCraftType());
-    jTextField2.setText(craft.getEngineType());
-    jTextField3.setText(craft.getDepartureTime());
-    jTextField4.setText(craft.getDestination());
-    jTextField5.setText(craft.getType());
-    jTextField6.setText(craft.getPurpose());
-    jTextField11.setText(craft.getModelNo());
+    name_txt.setText(craft.getName());
+    craft_txt.setText(craft.getCraftType());
+    engine_txt.setText(craft.getEngineType());
+    dep_time_txt.setText(craft.getDepartureTime());
+    destination_txt.setText(craft.getDestination());
+    type_txt.setText(craft.getType());
+    purpose_txt.setText(craft.getPurpose());
+    model_txt.setText(craft.getModelNo());
 
     // ================= AIRCRAFT =================
     if (craft.getCraftType().equals("Aircraft")) {
 
         if (craft.getType().equals("Tropospheric")) {
             // Flight No + Model No
-            jLabel1.setVisible(true);
-            jTextField8.setVisible(true);
-            jTextField8.setText(craft.getFlightNo());
+            flight.setVisible(true);
+            flight_txt.setVisible(true);
+            flight_txt.setText(craft.getFlightNo());
         }
 
         else if (craft.getType().equals("Stratospheric")) {
             // Base + Tail No + Model No
-            jLabel9.setVisible(true);
-            jTextField10.setVisible(true);
-            jTextField10.setText(craft.getBase());
+            base.setVisible(true);
+            base_txt.setVisible(true);
+            base_txt.setText(craft.getBase());
 
-            Serialnum.setText("Tail No :");
-            Serialnum.setVisible(true);
-            Serialno.setVisible(true);
-            Serialno.setText(craft.getTailNumber());
+            tail_no.setText("Tail No :");
+            tail_no.setVisible(true);
+            tail_txt.setVisible(true);
+            tail_txt.setText(craft.getTailNumber());
         }
     }
 
@@ -88,24 +92,24 @@ public class CraftPanel extends javax.swing.JPanel {
         Serialno.setText(craft.getSerialNo());
 
         // Ensure Aircraft-only fields stay hidden
-        jLabel1.setVisible(false);
-        jTextField8.setVisible(false);
-        jLabel9.setVisible(false);
-        jTextField10.setVisible(false);
+        flight.setVisible(false);
+        tail_txt.setVisible(false);
+        base.setVisible(false);
+        base_txt.setVisible(false);
     }
 
     // Make all fields read-only
-    jTextField1.setEditable(false);
-    jTextField2.setEditable(false);
-    jTextField3.setEditable(false);
-    jTextField4.setEditable(false);
-    jTextField5.setEditable(false);
-    jTextField6.setEditable(false);
-    jTextField7.setEditable(false);
-    jTextField8.setEditable(false);
+    craft_txt.setEditable(false);
+    engine_txt.setEditable(false);
+    flight_txt.setEditable(false);
+    destination_txt.setEditable(false);
+    type_txt.setEditable(false);
+    purpose_txt.setEditable(false);
+    name_txt.setEditable(false);
+    tail_txt.setEditable(false);
     Serialno.setEditable(false);
-    jTextField10.setEditable(false);
-    jTextField11.setEditable(false);
+    base_txt.setEditable(false);
+    model_txt.setEditable(false);
 }
 
     /**
@@ -117,32 +121,32 @@ public class CraftPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        flight = new javax.swing.JLabel();
+        engine = new javax.swing.JLabel();
+        Destination = new javax.swing.JLabel();
+        depart_time = new javax.swing.JLabel();
+        type = new javax.swing.JLabel();
+        Purpose = new javax.swing.JLabel();
+        model_no = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        base = new javax.swing.JLabel();
         Serialnum = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        craft_type = new javax.swing.JLabel();
+        tail_no = new javax.swing.JLabel();
+        craft_txt = new javax.swing.JTextField();
+        engine_txt = new javax.swing.JTextField();
+        flight_txt = new javax.swing.JTextField();
+        destination_txt = new javax.swing.JTextField();
+        type_txt = new javax.swing.JTextField();
+        purpose_txt = new javax.swing.JTextField();
+        name_txt = new javax.swing.JTextField();
+        tail_txt = new javax.swing.JTextField();
         Serialno = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        base_txt = new javax.swing.JTextField();
+        model_txt = new javax.swing.JTextField();
         del_btn = new javax.swing.JButton();
         edit_btn = new javax.swing.JButton();
-        jTextField12 = new javax.swing.JTextField();
+        dep_time_txt = new javax.swing.JTextField();
         save_btn = new javax.swing.JButton();
         spacepng = new javax.swing.JLabel();
 
@@ -151,68 +155,68 @@ public class CraftPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Flight No :");
-        jLabel1.setOpaque(true);
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 120, 40));
+        flight.setBackground(new java.awt.Color(255, 255, 255));
+        flight.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        flight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        flight.setText("Flight No :");
+        flight.setOpaque(true);
+        add(flight, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 120, 40));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Engine Type:");
-        jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 130, 40));
+        engine.setBackground(new java.awt.Color(255, 255, 255));
+        engine.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        engine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        engine.setText("Engine Type:");
+        engine.setOpaque(true);
+        add(engine, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 130, 40));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Destination :");
-        jLabel3.setOpaque(true);
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 140, 40));
+        Destination.setBackground(new java.awt.Color(255, 255, 255));
+        Destination.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        Destination.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Destination.setText("Destination :");
+        Destination.setOpaque(true);
+        add(Destination, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 140, 40));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Departure Time :");
-        jLabel4.setOpaque(true);
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 170, 40));
+        depart_time.setBackground(new java.awt.Color(255, 255, 255));
+        depart_time.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        depart_time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        depart_time.setText("Departure Time :");
+        depart_time.setOpaque(true);
+        add(depart_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 170, 40));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Type :");
-        jLabel5.setOpaque(true);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 90, 40));
+        type.setBackground(new java.awt.Color(255, 255, 255));
+        type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        type.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        type.setText("Type :");
+        type.setOpaque(true);
+        add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 90, 40));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Purpose :");
-        jLabel6.setOpaque(true);
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 110, 40));
+        Purpose.setBackground(new java.awt.Color(255, 255, 255));
+        Purpose.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        Purpose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Purpose.setText("Purpose :");
+        Purpose.setOpaque(true);
+        add(Purpose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 110, 40));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Model no :");
-        jLabel7.setOpaque(true);
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 120, 40));
+        model_no.setBackground(new java.awt.Color(255, 255, 255));
+        model_no.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        model_no.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        model_no.setText("Model no :");
+        model_no.setOpaque(true);
+        add(model_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 120, 40));
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Name :");
-        jLabel8.setOpaque(true);
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 90, 40));
+        name.setBackground(new java.awt.Color(255, 255, 255));
+        name.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name.setText("Name :");
+        name.setOpaque(true);
+        add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 90, 40));
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Base :");
-        jLabel9.setOpaque(true);
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 120, 40));
+        base.setBackground(new java.awt.Color(255, 255, 255));
+        base.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        base.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        base.setText("Base :");
+        base.setOpaque(true);
+        add(base, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 120, 40));
 
         Serialnum.setBackground(new java.awt.Color(255, 255, 255));
         Serialnum.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
@@ -221,57 +225,62 @@ public class CraftPanel extends javax.swing.JPanel {
         Serialnum.setOpaque(true);
         add(Serialnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 120, 40));
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Craft Type :");
-        jLabel12.setOpaque(true);
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 120, 40));
+        craft_type.setBackground(new java.awt.Color(255, 255, 255));
+        craft_type.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        craft_type.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        craft_type.setText("Craft Type :");
+        craft_type.setOpaque(true);
+        add(craft_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 120, 40));
 
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Tail no :");
-        jLabel13.setOpaque(true);
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 120, 40));
+        tail_no.setBackground(new java.awt.Color(255, 255, 255));
+        tail_no.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        tail_no.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tail_no.setText("Tail no :");
+        tail_no.setOpaque(true);
+        add(tail_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 120, 40));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 210, 40));
+        craft_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(craft_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 210, 40));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 310, 40));
+        engine_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(engine_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 310, 40));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, 170, 40));
+        flight_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(flight_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, 170, 40));
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 280, 40));
+        destination_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(destination_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 280, 40));
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 220, 40));
+        type_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(type_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 220, 40));
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 190, 40));
+        purpose_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(purpose_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 190, 40));
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 170, 40));
+        name_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(name_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 170, 40));
 
-        jTextField8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, 170, 40));
+        tail_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(tail_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, 170, 40));
 
         Serialno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(Serialno, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, 170, 40));
 
-        jTextField10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 210, 40));
+        base_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(base_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 210, 40));
 
-        jTextField11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 170, 40));
+        model_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(model_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 170, 40));
 
         del_btn.setBackground(new java.awt.Color(0, 0, 90));
         del_btn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         del_btn.setForeground(new java.awt.Color(255, 255, 255));
         del_btn.setText("Delete");
+        del_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                del_btnActionPerformed(evt);
+            }
+        });
         add(del_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 110, -1));
 
         edit_btn.setBackground(new java.awt.Color(0, 0, 90));
@@ -285,8 +294,8 @@ public class CraftPanel extends javax.swing.JPanel {
         });
         add(edit_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 110, -1));
 
-        jTextField12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 170, 40));
+        dep_time_txt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(dep_time_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 170, 40));
 
         save_btn.setBackground(new java.awt.Color(0, 0, 90));
         save_btn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
@@ -299,26 +308,27 @@ public class CraftPanel extends javax.swing.JPanel {
         });
         add(save_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 590, 110, -1));
 
-        spacepng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/space.png"))); // NOI18N
+        spacepng.setBackground(new java.awt.Color(193, 220, 252));
         spacepng.setMaximumSize(new java.awt.Dimension(1000, 700));
         spacepng.setMinimumSize(new java.awt.Dimension(1000, 700));
+        spacepng.setOpaque(true);
         spacepng.setPreferredSize(new java.awt.Dimension(1000, 700));
-        add(spacepng, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        add(spacepng, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void edit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_btnActionPerformed
         // TODO add your handling code here:
-    jTextField1.setEditable(true);
-    jTextField2.setEditable(true);
-    jTextField3.setEditable(true);
-    jTextField4.setEditable(true);
-    jTextField5.setEditable(true);
-    jTextField6.setEditable(true);
-    jTextField7.setEditable(true);
-    jTextField8.setEditable(true);
+    craft_txt.setEditable(true);
+    engine_txt.setEditable(true);
+    flight_txt.setEditable(true);
+    destination_txt.setEditable(true);
+    type_txt.setEditable(true);
+    purpose_txt.setEditable(true);
+    name_txt.setEditable(true);
+    tail_txt.setEditable(true);
     Serialno.setEditable(true);
-    jTextField10.setEditable(true);
-    jTextField11.setEditable(true);
+    base_txt.setEditable(true);
+    model_txt.setEditable(true);
     
 
     // Hide Edit button, show Save button
@@ -330,34 +340,40 @@ public class CraftPanel extends javax.swing.JPanel {
     private void save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_btnActionPerformed
         // TODO add your handling code here:
         if(craft != null){
-        craft.setName(jTextField7.getText());
-        craft.setCraftType(jTextField1.getText());
-        craft.setEngineType(jTextField2.getText());
-        craft.setDepartureTime(jTextField3.getText());
-        craft.setDestination(jTextField4.getText());
-        craft.setType(jTextField5.getText());
-        craft.setPurpose(jTextField6.getText());
-        craft.setModelNo(jTextField11.getText());
+        craft.setName(name_txt.getText());
+        craft.setCraftType(craft_txt.getText());
+        craft.setEngineType(engine_txt.getText());
+        craft.setDepartureTime(flight_txt.getText());
+        craft.setDestination(destination_txt.getText());
+        craft.setType(type_txt.getText());
+        craft.setPurpose(purpose_txt.getText());
+        craft.setModelNo(model_txt.getText());
 
-        if(craft.getCraftType().equals("Aircraft")){
-            craft.setFlightNo(jTextField8.getText());
-        } else if(craft.getCraftType().equals("Spacecraft")){
-            craft.setBase(jTextField10.getText());
-            craft.setTailNumber(Serialno.getText());
+        if (craft.getCraftType().equals("Aircraft")) {
+            if (craft.getType().equals("Tropospheric")) {
+                craft.setFlightNo(flight_txt.getText());
+            } 
+            else if (craft.getType().equals("Stratospheric")) {
+                craft.setBase(base_txt.getText());
+                craft.setTailNumber(tail_txt.getText());
+            }
+        } 
+        else if (craft.getCraftType().equals("Spacecraft")) {
+            craft.setSerialNo(Serialno.getText());
         }
 
         // Make fields read-only again
-        jTextField1.setEditable(false);
-        jTextField2.setEditable(false);
-        jTextField3.setEditable(false);
-        jTextField4.setEditable(false);
-        jTextField5.setEditable(false);
-        jTextField6.setEditable(false);
-        jTextField7.setEditable(false);
-        jTextField8.setEditable(false);
+        craft_txt.setEditable(false);
+        engine_txt.setEditable(false);
+        flight_txt.setEditable(false);
+        destination_txt.setEditable(false);
+        type_txt.setEditable(false);
+        purpose_txt.setEditable(false);
+        name_txt.setEditable(false);
+        tail_txt.setEditable(false);
         Serialno.setEditable(false);
-        jTextField10.setEditable(false);
-        jTextField11.setEditable(false);
+        base_txt.setEditable(false);
+        model_txt.setEditable(false);
 
         // Hide Save button, show Edit button
         save_btn.setVisible(false);
@@ -372,35 +388,72 @@ public class CraftPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_save_btnActionPerformed
 
+    private void del_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btnActionPerformed
+        // TODO add your handling code here:                                       
+
+    int choice = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete this craft?",
+            "Confirm Deletion",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.WARNING_MESSAGE
+    );
+
+    if (choice == javax.swing.JOptionPane.YES_OPTION) {
+
+        boolean removed = CraftQueue.removeCraft(craft);
+
+        if (removed) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Craft deleted successfully!"
+            );
+
+            // Remove panel from UI
+            this.getParent().remove(this);
+            this.getParent().revalidate();
+            this.getParent().repaint();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Failed to delete craft.",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    }//GEN-LAST:event_del_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Destination;
+    private javax.swing.JLabel Purpose;
     private javax.swing.JTextField Serialno;
     private javax.swing.JLabel Serialnum;
+    private javax.swing.JLabel base;
+    private javax.swing.JTextField base_txt;
+    private javax.swing.JTextField craft_txt;
+    private javax.swing.JLabel craft_type;
     private javax.swing.JButton del_btn;
+    private javax.swing.JTextField dep_time_txt;
+    private javax.swing.JLabel depart_time;
+    private javax.swing.JTextField destination_txt;
     private javax.swing.JButton edit_btn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel engine;
+    private javax.swing.JTextField engine_txt;
+    private javax.swing.JLabel flight;
+    private javax.swing.JTextField flight_txt;
+    private javax.swing.JLabel model_no;
+    private javax.swing.JTextField model_txt;
+    private javax.swing.JLabel name;
+    private javax.swing.JTextField name_txt;
+    private javax.swing.JTextField purpose_txt;
     private javax.swing.JButton save_btn;
     private javax.swing.JLabel spacepng;
+    private javax.swing.JLabel tail_no;
+    private javax.swing.JTextField tail_txt;
+    private javax.swing.JLabel type;
+    private javax.swing.JTextField type_txt;
     // End of variables declaration//GEN-END:variables
 }

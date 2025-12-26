@@ -940,8 +940,8 @@ public class loginPage extends javax.swing.JFrame {
 }
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
         // TODO add your handling code here:
-        refreshCraftTable();
         CraftQueue.initializeSampleData();
+        refreshCraftTable();
 
     }//GEN-LAST:event_RefreshActionPerformed
 

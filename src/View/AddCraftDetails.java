@@ -31,6 +31,10 @@ public class AddCraftDetails extends javax.swing.JFrame {
         Base_txt.setVisible(false);
         Tail_number.setVisible(false);
         tail_no_txt.setVisible(false);
+        Serial_no.setVisible(false);
+        serialno_txt.setVisible(false);
+        
+        String depart_time = departure_time_txt.getText().trim();
     }
     
 
@@ -398,6 +402,7 @@ public class AddCraftDetails extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+    String depart_time = departure_time_txt.getText().trim();
     if (name_txt.getText().trim().isEmpty()) {
     JOptionPane.showMessageDialog(this, "Please enter craft name");
     return;                
@@ -417,6 +422,11 @@ public class AddCraftDetails extends javax.swing.JFrame {
     if (departure_time_txt.getText().trim().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter departure time");
         return;
+    }
+    if (!depart_time.matches("([01]?\\d|2[0-3]):[0-5]\\d")) {
+        JOptionPane.showMessageDialog(this, "Enter time in HH:mm format! Example: 09:30 or 23:15");
+        return;
+        
     }if (engine_type_txt.getText().trim().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter engine type");
         return;
@@ -433,24 +443,53 @@ public class AddCraftDetails extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Please select status of the craft");
         return;
     }
-    if (Aircraft_button.isSelected()){
+    String selectedType = type_combo.getSelectedItem().toString();
+
+// AIRCRAFT LOGIC
+if (Aircraft_button.isSelected()) {
+    
+    if (model_number_txt.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter model number");
+        return;
+    }
+
+    if (selectedType.equals("Tropospheric")) {
+        Flight_no.setVisible(true);
+        flight_no_txt.setVisible(true);
+
         if (flight_no_txt.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter flight number");
-        return;
+            JOptionPane.showMessageDialog(this, "Please enter flight number");
+            return;
         }
-    }
-    else{
-            if (Base_txt.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter base");
-        return;
-    }
+
+    } else if (selectedType.equals("Stratospheric")) {
+        base.setVisible(true);
+        Base_txt.setVisible(true);
+        Tail_number.setVisible(true);
+        tail_no_txt.setVisible(true);
+
+        if (Base_txt.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter base");
+            return;
+        }
+
         if (tail_no_txt.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter tail number");
-        return;
+            JOptionPane.showMessageDialog(this, "Please enter tail number");
+            return;
         }
-    
     }
-    
+}
+
+// SPACECRAFT LOGIC
+else if (Spacecraft_button.isSelected()) {
+    Serial_no.setVisible(true);
+    serialno_txt.setVisible(true);
+    if (serialno_txt.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter spacecraft serial number");
+        return;
+    }
+}
+
     
     // Create the craft object
     Craft craft = new Craft(
@@ -465,8 +504,8 @@ public class AddCraftDetails extends javax.swing.JFrame {
         type_combo.getSelectedItem().toString(),               // 9. type (Troposheric, etc.)
         Purpose_combo.getSelectedItem().toString(),            // 10. purpose (Commercial, etc.) - FIXED!
         status_combo.getSelectedItem().toString(),             // 11. status (On-Board, etc.)
-        serialno_txt.getText().trim(),
-        Aircraft_button.isSelected() ? "Aircraft" : "Spacecraft" // 12. craftType
+        Aircraft_button.isSelected() ? "Aircraft" : "Spacecraft", // 12. craftType
+        serialno_txt.getText().trim()
     );
     
     CraftQueue.addCraft(craft); // Add to queue
@@ -480,12 +519,12 @@ public class AddCraftDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     Serial_no.setVisible(false);
     serialno_txt.setVisible(false);
-    base.setVisible(true);
-    Base_txt.setVisible(true);
-    Tail_number.setVisible(true);
-    tail_no_txt.setVisible(true);
-    Flight_no.setVisible(true);
-    flight_no_txt.setVisible(true);
+    base.setVisible(false);
+    Base_txt.setVisible(false);
+    Tail_number.setVisible(false);
+    tail_no_txt.setVisible(false);
+    Flight_no.setVisible(false);
+    flight_no_txt.setVisible(false);
     type_combo.removeActionListener(type_combo.getActionListeners()[0]);
 
     type_combo.removeAllItems();
