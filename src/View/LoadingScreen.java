@@ -75,11 +75,12 @@ public class LoadingScreen extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new LoadingScreen().setVisible(true));
+       
     }
     private void startTimer() {
         //timer for 5 seocnds 5000 ms
     
-    javax.swing.Timer timer = new javax.swing.Timer(4000, e -> { 
+    javax.swing.Timer timer = new javax.swing.Timer(3000, e -> { 
         new loginPage().setVisible(true);
         this.dispose();
     });
